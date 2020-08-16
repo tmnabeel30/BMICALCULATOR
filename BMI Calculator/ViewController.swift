@@ -38,6 +38,11 @@ class ViewController: UIViewController {
         weightLabel.text = "\(doubleStr)"
         
     }
+    @IBAction func calculateButton(_ sender: Any) {
+        let BMI = String(format: "%.2f", weight/(height*height))
+        print("BMI: \(BMI)")
+        
+    }
     
 
 }
