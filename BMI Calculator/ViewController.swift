@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    var commentIndex = ""
+    var bmiIndex = ""
     var height:Float = 0
     var weight:Float = 0
     
@@ -40,12 +41,43 @@ class ViewController: UIViewController {
     }
     @IBAction func calculateButton(_ sender: Any) {
         let BMI = String(format: "%.2f", weight/(height*height))
-        print("BMI: \(BMI)")
+        bmiIndex = BMI
         
-        let secondVC = SecondViewController()
-        secondVC.bmi = BMI
-        self.present(secondVC, animated: true, completion: nil)
+        performSegue(withIdentifier: "SecondSegue", sender: self)
         
+  
+        
+
+print("hello: \(commentIndex)")
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SecondSegue"{
+            let destinationVC = segue.destination as! ResultViewController
+           
+            //Gives Comment
+            var comments = ""
+            if (weight/(height*height)) > (25) {
+                comments = "Do some exercise"
+                print("com: \(weight/(height*height))")
+
+            }else if (weight/(height*height)) > Float(18) && (weight/(height*height)) <= Float(25) {
+                
+                comments = "you are fit and fine"
+                print("com: \(weight/(height*height))")
+            }else{
+                comments = "EAT SOME MORE SNACKS!"
+                print("com: \(weight/(height*height))")
+            }
+            
+            //Set properties
+            commentIndex = comments
+            destinationVC.bmiValue = bmiIndex
+            destinationVC.comment = commentIndex
+            
+            
+        }
     }
     
 
