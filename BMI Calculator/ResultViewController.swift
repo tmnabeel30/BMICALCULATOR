@@ -30,7 +30,7 @@ class ResultViewController: UIViewController {
     @IBAction func recalculateButton(_ sender: UIButton) {
         
        
-        performSegue(withIdentifier: "MainSegue", sender: self)
+        dismiss(animated: true, completion: nil)
     }
 
     /*
